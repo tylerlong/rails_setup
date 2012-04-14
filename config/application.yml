@@ -1,0 +1,11 @@
+common: &common
+  site_name: 'Rails Setup'
+
+development:
+  <<: *common
+
+test:
+  <<: *common
+
+production:
+  <<: *common
