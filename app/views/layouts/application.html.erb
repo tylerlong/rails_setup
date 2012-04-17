@@ -10,6 +10,7 @@
 <body>
 <div class="container">
 <%= render 'layouts/header' %>
+<% if !yield(:h1).blank? %><h1><%= yield(:h1) %></h1><% end %>
 <%= render 'layouts/flash', flash: flash %>
 <%= yield %>
 <%= render 'layouts/footer' %>
