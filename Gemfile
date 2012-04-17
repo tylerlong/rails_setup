@@ -21,4 +21,5 @@ group :development, :test do
   gem 'guard-spork'
   gem 'rb-inotify'
   gem 'libnotify'
+  gem 'factory_girl_rails'
 end
