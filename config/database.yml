@@ -1,14 +1,14 @@
 common: &common
   adapter: postgresql
-  username: [username]
-  password: [password]
+  username: tyler
+  password: 123456
   pool: 5
   timeout: 5000
 
 development:
   <<: *common
-  database: [app_name]_dev
+  database: rails_setup_dev
 
 test:
   <<: *common
-  database: [app_name]_test
+  database: rails_setup_test
