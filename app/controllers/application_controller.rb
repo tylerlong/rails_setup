@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
     def user_filter
       unless user?
         store_url
-        flash[:info] = "Please sign in."
+        flash[:info] = "Please sign in to continue."
         redirect_to signin_path
       end
     end
