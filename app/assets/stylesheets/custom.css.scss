@@ -13,3 +13,8 @@ body { padding-top: 60px; }
 @import "bootswatch/journal/bootswatch";
 
 // Other self-defined styles goes below
+
+.field_with_errors .message {
+  background: $errorBackground;
+  color: $errorText;
+}
