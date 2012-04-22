@@ -5,6 +5,7 @@ gem 'jquery-rails'
 gem 'pg'
 gem 'bootstrap-sass'
 gem 'bootswatch-rails'
+gem 'client_side_validations'
 gem 'bcrypt-ruby'
 
 group :assets do
