@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
     end
 
     def administrator_filter
-      unless current_user.admin?
+      unless user? && current_user.admin?
         flash[:error] = "Permission denied."
         redirect_to back_path
       end
