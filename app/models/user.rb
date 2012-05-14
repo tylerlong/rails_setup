@@ -7,9 +7,10 @@
 #  email           :string(255)
 #  password_digest :string(255)
 #  remember_token  :string(255)
-#  admin           :boolean         default(FALSE)
 #  created_at      :datetime        not null
 #  updated_at      :datetime        not null
+#  username        :string(255)
+#  roles_mask      :integer
 #
 
 class User < ActiveRecord::Base
@@ -39,8 +40,8 @@ class User < ActiveRecord::Base
   def roles
     ROLES.reject { |r| ((roles_mask || 0) & 2**ROLES.index(r)).zero? }
   end
-  def admin?
-    self.roles.include?('admin')
+  def is?(role)
+    self.roles.include?(role.to_s)
   end
 
   private

@@ -7,9 +7,10 @@
 #  email           :string(255)
 #  password_digest :string(255)
 #  remember_token  :string(255)
-#  admin           :boolean         default(FALSE)
 #  created_at      :datetime        not null
 #  updated_at      :datetime        not null
+#  username        :string(255)
+#  roles_mask      :integer
 #
 
 require 'spec_helper'
@@ -26,11 +27,10 @@ describe User do
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:password_digest) }
   it { should respond_to(:remember_token) }
-  it { should respond_to(:admin?) }
   it { should respond_to(:authenticate) }
 
   it { should be_valid }
-  it { should_not be_admin }
+  specify { @user.is?(:admin) == false }
 
   describe "when name is not present, set automatically" do
     before { @user.name = '' }
@@ -132,7 +132,7 @@ describe User do
 
   describe "with admin attribute set to 'true'" do
     before { @user.roles = ['admin'] }
-    it { should be_admin }
+    specify { @user.is?(:admin) == true }
   end
 
   describe "accessible attributes" do
