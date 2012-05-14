@@ -6,7 +6,7 @@ FactoryGirl.define do
     password "foobar"
     password_confirmation "foobar"
     factory :admin do
-      admin true
+      roles ['admin']
     end
   end
 end

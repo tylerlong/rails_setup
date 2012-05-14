@@ -32,6 +32,17 @@ class User < ActiveRecord::Base
 
   validates :password, length: { minimum: 6, maximum: 100 }
 
+  ROLES = %w[admin]
+  def roles=(roles)
+    self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum
+  end
+  def roles
+    ROLES.reject { |r| ((roles_mask || 0) & 2**ROLES.index(r)).zero? }
+  end
+  def admin?
+    self.roles.include?('admin')
+  end
+
   private
 
     def create_remember_token
