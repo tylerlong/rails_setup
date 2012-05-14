@@ -16,11 +16,12 @@ require 'spec_helper'
 
 describe User do
   before { @user = User.new(name: "Tyler Long", email: "tylerlong@example.com",
-    password: "foobar", password_confirmation: "foobar") }
+    username: "tylerlong", password: "foobar", password_confirmation: "foobar") }
   subject { @user }
 
   it { should respond_to(:name) }
   it { should respond_to(:email) }
+  it { should respond_to(:username) }
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:password_digest) }
@@ -31,9 +32,9 @@ describe User do
   it { should be_valid }
   it { should_not be_admin }
 
-  describe "when name is not present" do
+  describe "when name is not present, set automatically" do
     before { @user.name = '' }
-    it { should_not be_valid }
+    it { should be_valid }
   end
 
   describe "when name is too short" do
@@ -71,6 +72,21 @@ describe User do
       user_with_same_email.email = @user.email.upcase
       user_with_same_email.save
     end
+    it { should_not be_valid }
+  end
+
+  describe "when username is not present" do
+    before { @user.username = '' }
+    it { should_not be_valid }
+  end
+
+  describe "when username is too short" do
+    before { @user.username = 'a' * 2 }
+    it { should_not be_valid }
+  end
+
+  describe "when username is too long" do
+    before { @user.username = 'a' * 51 }
     it { should_not be_valid }
   end
 

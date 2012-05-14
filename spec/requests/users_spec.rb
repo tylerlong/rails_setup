@@ -38,7 +38,7 @@ describe "User pages" do
       describe "error messages" do
         before { click_button "Create my account" }
         it { should have_selector('title', text: "Sign up") }
-        it { should have_selector('div', text: "The form contains 6 errors") }
+        it { should have_selector('div', text: "The form contains") }
         it { should have_selector('li', text: "* Email can't be blank") }
       end
     end
